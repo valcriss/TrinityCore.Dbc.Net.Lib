@@ -8,6 +8,24 @@ _First of all, English is not my mother tongue, so sorry in advance for any mist
 With this library you can open and read the contents of used dbc files used by the trinitycore server.
 Each file is represented by a specific class.
 
+## How to use the library ?
+
+#### Basic example
+
+```csharp
+DbcDirectory.Initialize("<path to dbc directory>");
+List<Achievement> records = DbcDirectory.Open<Achievement>();
+```
+
+#### Specifying the locale
+
+```csharp
+DbcDirectory.Initialize("<path to dbc directory>", Enums.DbcLocale.frFR);
+List<Achievement> records = DbcDirectory.Open<Achievement>();
+```
+
+
+
 ## What files are currently available ?
 
 - [x] [Achievement](TrinityCore.Dbc.Net.Lib/Definitions/Achievement.cs)
