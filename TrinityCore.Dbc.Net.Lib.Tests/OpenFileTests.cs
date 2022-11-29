@@ -9,7 +9,7 @@ namespace TrinityCore.Dbc.Net.Lib.Tests
          [ClassInitialize]
          public static void TestInitialize(TestContext context)
          {
-            DbcDirectory.Initialize(@"C:\Users\Z019817\Documents\dbc", Enums.DbcLocale.frFR);
+            DbcDirectory.Initialize(@"<path to dbc directory>", Enums.DbcLocale.frFR);
          }
          
          [TestMethod]
