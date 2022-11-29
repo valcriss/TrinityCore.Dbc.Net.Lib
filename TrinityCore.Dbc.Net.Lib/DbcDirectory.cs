@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TrinityCore.Dbc.Net.Lib.Enums;
+﻿using TrinityCore.Dbc.Net.Lib.Enums;
 using TrinityCore.Dbc.Net.Lib.Extensions;
 
 namespace TrinityCore.Dbc.Net.Lib
 {
     public static class DbcDirectory
     {
-        private static string? Directory { get; set; }
-        private static Dictionary<string, object> Storage { get; set; }
-
-        private static DbcLocale Locale { get; set; }
-
         static DbcDirectory()
         {
             Storage = new Dictionary<string, object>();
@@ -40,6 +30,15 @@ namespace TrinityCore.Dbc.Net.Lib
             return items;
         }
 
+        internal static DbcLocale GetLocale()
+        {
+            return Locale;
+        }
+
+        private static string? Directory { get; set; }
+        private static DbcLocale Locale { get; set; }
+        private static Dictionary<string, object> Storage { get; set; }
+
         private static List<T> OpenFile<T>() where T : DbcFile, new()
         {
             if (Directory == null)
@@ -60,11 +59,6 @@ namespace TrinityCore.Dbc.Net.Lib
             List<T> items = DbcFile.Read<T>(header, content);
             if (items.Count != header.RecordCount) throw new InvalidDataException($"Bad records count in file [{filename}] expecting [{header.RecordCount}] found [{items.Count}]");
             return items;
-        }
-
-        internal static DbcLocale GetLocale()
-        {
-            return Locale;
         }
     }
 }

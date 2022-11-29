@@ -1,35 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TrinityCore.Dbc.Net.Lib.Attributes;
 
 namespace TrinityCore.Dbc.Net.Lib.Definitions
 {
-   [DbcFile("CinematicCamera.dbc")]
-   public class CinematicCamera : DbcFile
+    [DbcFile("CinematicCamera.dbc")]
+    public class CinematicCamera : DbcFile
     {
-      [DbcColumn(0, Enums.DbcColumnDataType.UInt32)]
-      public uint Id { get; set; }
+        [DbcColumn(0, Enums.DbcColumnDataType.Int32)]
+        public int Id { get; set; }
 
-      [DbcColumn(1, Enums.DbcColumnDataType.StringRef)]
-      public string? Model { get; set; }
+        [DbcColumn(1, Enums.DbcColumnDataType.StringRef)]
+        public string? Model { get; set; }
 
-      [DbcColumn(2, Enums.DbcColumnDataType.UInt32)]
-      public uint SoundID { get; set; }
+        [DbcColumn(2, Enums.DbcColumnDataType.Int32)]
+        public int SoundId { get; set; }
 
-      [DbcColumn(3, Enums.DbcColumnDataType.Float)]
-      public float X { get; set; }
+        [DbcColumn(3, Enums.DbcColumnDataType.ArrayOfFloat, 3)]
+        public float[]? Origin { get; set; }
 
-      [DbcColumn(4, Enums.DbcColumnDataType.Float)]
-      public float Y { get; set; }
+        [DbcColumn(4, Enums.DbcColumnDataType.Float)]
+        public float OriginFacing { get; set; }
 
-      [DbcColumn(5, Enums.DbcColumnDataType.Float)]
-      public float Z { get; set; }
+        public SoundEntries? GetSoundIdSoundEntries()
+        {
+               return DbcDirectory.Open<SoundEntries>()?.Where(c => c.Id == this.SoundId).FirstOrDefault();
+        }
 
-      [DbcColumn(6, Enums.DbcColumnDataType.Float)]
-      public float Facing { get; set; }
-
-    }
+     }
 }

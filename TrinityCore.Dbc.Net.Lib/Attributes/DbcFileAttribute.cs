@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TrinityCore.Dbc.Net.Lib.Attributes
+﻿namespace TrinityCore.Dbc.Net.Lib.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
     internal class DbcFileAttribute : Attribute

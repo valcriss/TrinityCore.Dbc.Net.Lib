@@ -1,47 +1,52 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TrinityCore.Dbc.Net.Lib.Attributes;
 
 namespace TrinityCore.Dbc.Net.Lib.Definitions
 {
-   [DbcFile("CreatureDisplayInfoExtra.dbc")]
-   public class CreatureDisplayInfoExtra : DbcFile
+    [DbcFile("CreatureDisplayInfoExtra.dbc")]
+    public class CreatureDisplayInfoExtra : DbcFile
     {
-      [DbcColumn(0, Enums.DbcColumnDataType.UInt32)]
-      public uint Id { get; set; }
+        [DbcColumn(0, Enums.DbcColumnDataType.Int32)]
+        public int Id { get; set; }
 
-      [DbcColumn(1, Enums.DbcColumnDataType.UInt32)]
-      public uint DisplayRaceID { get; set; }
+        [DbcColumn(1, Enums.DbcColumnDataType.Int32)]
+        public int DisplayRaceId { get; set; }
 
-      [DbcColumn(2, Enums.DbcColumnDataType.UInt32)]
-      public uint DisplaySexID { get; set; }
+        [DbcColumn(2, Enums.DbcColumnDataType.Int32)]
+        public int DisplaySexId { get; set; }
 
-      [DbcColumn(3, Enums.DbcColumnDataType.UInt32)]
-      public uint SkinID { get; set; }
+        [DbcColumn(3, Enums.DbcColumnDataType.Int32)]
+        public int SkinId { get; set; }
 
-      [DbcColumn(4, Enums.DbcColumnDataType.UInt32)]
-      public uint FaceID { get; set; }
+        [DbcColumn(4, Enums.DbcColumnDataType.Int32)]
+        public int FaceId { get; set; }
 
-      [DbcColumn(5, Enums.DbcColumnDataType.UInt32)]
-      public uint HairStyleID { get; set; }
+        [DbcColumn(5, Enums.DbcColumnDataType.Int32)]
+        public int HairStyleId { get; set; }
 
-      [DbcColumn(6, Enums.DbcColumnDataType.UInt32)]
-      public uint HairColorID { get; set; }
+        [DbcColumn(6, Enums.DbcColumnDataType.Int32)]
+        public int HairColorId { get; set; }
 
-      [DbcColumn(7, Enums.DbcColumnDataType.UInt32)]
-      public uint FacialHairID { get; set; }
+        [DbcColumn(7, Enums.DbcColumnDataType.Int32)]
+        public int FacialHairId { get; set; }
 
-      [DbcColumn(8, Enums.DbcColumnDataType.ArrayOfUint32, 11)]
-      public uint[]? NPCItemDisplay { get; set; }
+        [DbcColumn(8, Enums.DbcColumnDataType.ArrayOfUint32, 11)]
+        public int[]? NPCItemDisplay { get; set; }
 
-      [DbcColumn(9, Enums.DbcColumnDataType.UInt32)]
-      public uint Flags { get; set; }
+        [DbcColumn(9, Enums.DbcColumnDataType.Int32)]
+        public int Flags { get; set; }
 
-      [DbcColumn(10, Enums.DbcColumnDataType.StringRef)]
-      public string? BakeName { get; set; }
+        [DbcColumn(10, Enums.DbcColumnDataType.StringRef)]
+        public string? BakeName { get; set; }
 
-    }
+        public ChrRaces? GetDisplayRaceIdChrRaces()
+        {
+               return DbcDirectory.Open<ChrRaces>()?.Where(c => c.Id == this.DisplayRaceId).FirstOrDefault();
+        }
+
+        public ItemDisplayInfo[]? GetNPCItemDisplayItemDisplayInfos()
+        {
+               return DbcDirectory.Open<ItemDisplayInfo>()?.Where(c => this.NPCItemDisplay != null && this.NPCItemDisplay.Contains(c.Id)).ToArray();
+        }
+
+     }
 }

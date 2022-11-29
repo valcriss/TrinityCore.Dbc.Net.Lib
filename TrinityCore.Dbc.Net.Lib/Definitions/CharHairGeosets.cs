@@ -1,8 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TrinityCore.Dbc.Net.Lib.Attributes;
 
 namespace TrinityCore.Dbc.Net.Lib.Definitions
@@ -10,22 +5,28 @@ namespace TrinityCore.Dbc.Net.Lib.Definitions
     [DbcFile("CharHairGeosets.dbc")]
     public class CharHairGeosets : DbcFile
     {
-        [DbcColumn(0, Enums.DbcColumnDataType.UInt32)]
-        public uint Id { get; set; }
+        [DbcColumn(0, Enums.DbcColumnDataType.Int32)]
+        public int Id { get; set; }
 
-        [DbcColumn(1, Enums.DbcColumnDataType.UInt32)]
-        public uint Race { get; set; }
+        [DbcColumn(1, Enums.DbcColumnDataType.Int32)]
+        public int RaceId { get; set; }
 
-        [DbcColumn(2, Enums.DbcColumnDataType.Bool)]
-        public bool Gender { get; set; }
+        [DbcColumn(2, Enums.DbcColumnDataType.Int32)]
+        public int SexId { get; set; }
 
-        [DbcColumn(3, Enums.DbcColumnDataType.UInt32)]
-        public uint HairType { get; set; }
+        [DbcColumn(3, Enums.DbcColumnDataType.Int32)]
+        public int VariationId { get; set; }
 
-        [DbcColumn(4, Enums.DbcColumnDataType.UInt32)]
-        public uint Geoset { get; set; }
+        [DbcColumn(4, Enums.DbcColumnDataType.Int32)]
+        public int GeosetId { get; set; }
 
-        [DbcColumn(5, Enums.DbcColumnDataType.Bool)]
-        public bool Bald { get; set; }
-    }
+        [DbcColumn(5, Enums.DbcColumnDataType.Int32)]
+        public int Showscalp { get; set; }
+
+        public ChrRaces? GetRaceIdChrRaces()
+        {
+               return DbcDirectory.Open<ChrRaces>()?.Where(c => c.Id == this.RaceId).FirstOrDefault();
+        }
+
+     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TrinityCore.Dbc.Net.Lib.Enums
+﻿namespace TrinityCore.Dbc.Net.Lib.Enums
 {
     internal enum DbcColumnDataType
     {
@@ -13,8 +7,11 @@ namespace TrinityCore.Dbc.Net.Lib.Enums
         UInt8,
         Int32,
         UInt32,
+        UInt64,
         StringRef,
         Loc,
+        ArrayOfBool,
+        ArrayOfFloat,
         ArrayOfUint32,
         ArrayOfStringRef,
         Float

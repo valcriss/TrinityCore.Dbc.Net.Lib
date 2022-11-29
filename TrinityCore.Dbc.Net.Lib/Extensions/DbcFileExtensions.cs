@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using TrinityCore.Dbc.Net.Lib.Attributes;
 using TrinityCore.Dbc.Net.Lib.Enums;
 
@@ -11,18 +6,6 @@ namespace TrinityCore.Dbc.Net.Lib.Extensions
 {
     internal static class DbcFileExtensions
     {
-        internal static string? GetDbcFilename(this Type type)
-        {
-            Attribute[] attributes = Attribute.GetCustomAttributes(type);
-            Attribute? attribute = attributes.FirstOrDefault(c => c is DbcFileAttribute);
-            if (attribute != null)
-            {
-                DbcFileAttribute dbcFileAttribute = (DbcFileAttribute)attribute;
-                return dbcFileAttribute.Filename;
-            }
-            return null;
-        }
-
         internal static int GetDbcFileColumnCount(this Type type)
         {
             int count = 0;
@@ -38,7 +21,7 @@ namespace TrinityCore.Dbc.Net.Lib.Extensions
                     {
                         count += Enum.GetNames(typeof(DbcLocale)).Length;
                     }
-                    else if(attribute.DataType == DbcColumnDataType.ArrayOfUint32 || attribute.DataType == DbcColumnDataType.ArrayOfStringRef)
+                    else if (attribute.DataType == DbcColumnDataType.ArrayOfBool || attribute.DataType == DbcColumnDataType.ArrayOfFloat || attribute.DataType == DbcColumnDataType.ArrayOfUint32 || attribute.DataType == DbcColumnDataType.ArrayOfStringRef)
                     {
                         count += attribute.ArrayCount;
                     }
@@ -50,6 +33,18 @@ namespace TrinityCore.Dbc.Net.Lib.Extensions
             }
 
             return count;
+        }
+
+        internal static string? GetDbcFilename(this Type type)
+        {
+            Attribute[] attributes = Attribute.GetCustomAttributes(type);
+            Attribute? attribute = attributes.FirstOrDefault(c => c is DbcFileAttribute);
+            if (attribute != null)
+            {
+                DbcFileAttribute dbcFileAttribute = (DbcFileAttribute)attribute;
+                return dbcFileAttribute.Filename;
+            }
+            return null;
         }
 
         internal static DbcFileProperty[] GetDbcFileProperties(this Type type)

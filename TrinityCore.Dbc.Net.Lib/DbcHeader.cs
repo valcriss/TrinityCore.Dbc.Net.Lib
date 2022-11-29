@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TrinityCore.Dbc.Net.Lib
+﻿namespace TrinityCore.Dbc.Net.Lib
 {
     public class DbcHeader
     {
         public const int DBC_HEADER_LENGTH = 20;
         public const int DBC_SIGNATURE = 1128416343;
 
-        public uint Magic; 
-        public uint RecordCount;
         public uint fieldCount;
-        public uint RecordSize; 
+        public uint Magic;
+        public uint RecordCount;
+        public uint RecordSize;
         public uint StringBlockSize;
 
         public static DbcHeader? Read(byte[] content)

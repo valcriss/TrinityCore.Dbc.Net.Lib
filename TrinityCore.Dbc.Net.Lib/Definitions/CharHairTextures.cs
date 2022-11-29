@@ -1,8 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TrinityCore.Dbc.Net.Lib.Attributes;
 
 namespace TrinityCore.Dbc.Net.Lib.Definitions
@@ -10,28 +5,34 @@ namespace TrinityCore.Dbc.Net.Lib.Definitions
     [DbcFile("CharHairTextures.dbc")]
     public class CharHairTextures : DbcFile
     {
-        [DbcColumn(0, Enums.DbcColumnDataType.UInt32)]
-        public uint Id { get; set; }
+        [DbcColumn(0, Enums.DbcColumnDataType.Int32)]
+        public int Id { get; set; }
 
-        [DbcColumn(1, Enums.DbcColumnDataType.UInt32)]
-        public uint Race { get; set; }
+        [DbcColumn(1, Enums.DbcColumnDataType.Int32)]
+        public int Field0533368001Race { get; set; }
 
-        [DbcColumn(2, Enums.DbcColumnDataType.Bool)]
-        public bool Gender { get; set; }
+        [DbcColumn(2, Enums.DbcColumnDataType.Int32)]
+        public int Field0533368002Gender { get; set; }
 
-        [DbcColumn(3, Enums.DbcColumnDataType.Bool)]
-        public bool Unknown1 { get; set; }
+        [DbcColumn(3, Enums.DbcColumnDataType.Int32)]
+        public int Field0533368003 { get; set; }
 
-        [DbcColumn(4, Enums.DbcColumnDataType.UInt32)]
-        public uint Unknown2 { get; set; }
+        [DbcColumn(4, Enums.DbcColumnDataType.Int32)]
+        public int Field0533368004Mayberacemask { get; set; }
 
-        [DbcColumn(5, Enums.DbcColumnDataType.UInt32)]
-        public uint Unknown3 { get; set; }
+        [DbcColumn(5, Enums.DbcColumnDataType.Int32)]
+        public int Field0533368005TheXInHairXyBlp { get; set; }
 
-        [DbcColumn(6, Enums.DbcColumnDataType.UInt32)]
-        public uint Unknown4 { get; set; }
+        [DbcColumn(6, Enums.DbcColumnDataType.Int32)]
+        public int Field0533368006 { get; set; }
 
-        [DbcColumn(7, Enums.DbcColumnDataType.UInt32)]
-        public uint Unknown5 { get; set; }
-    }
+        [DbcColumn(7, Enums.DbcColumnDataType.Int32)]
+        public int Field0533368007 { get; set; }
+
+        public ChrRaces? GetField0533368001RaceChrRaces()
+        {
+               return DbcDirectory.Open<ChrRaces>()?.Where(c => c.Id == this.Field0533368001Race).FirstOrDefault();
+        }
+
+     }
 }
