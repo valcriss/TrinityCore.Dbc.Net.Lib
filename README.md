@@ -1,0 +1,1 @@
+# TrinityCore.Dbc.Net.Lib
